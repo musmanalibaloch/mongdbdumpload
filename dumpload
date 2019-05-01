@@ -1,0 +1,15 @@
+I have been through a lot of trouble so I came up with my own solution, I created this script, just set the path inside script and db name and run it, it will do the trick
+```
+#!/bin/bash
+  
+FILES= #absolute or relative path to dump directory
+DB=`db` #db name
+for file in $FILES
+do
+
+    name=$(basename $file)
+    collection="${name%.*}"
+    echo `mongoimport --db "$DB" --file "$name" --collection "$collection"`
+
+done
+```
